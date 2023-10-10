@@ -268,6 +268,15 @@ static bool str_start_encode(zcbor_state_t *state,
 }
 
 
+bool zcbor_bstr_header_encode(zcbor_state_t *state, uint64_t length)
+{
+	if (!value_encode(state, ZCBOR_MAJOR_TYPE_BSTR, &length, sizeof(length))) {
+		ZCBOR_FAIL();
+	}
+	return true;
+}
+
+
 static size_t remaining_str_len(zcbor_state_t *state)
 {
 	size_t max_len = (size_t)state->payload_end - (size_t)state->payload;

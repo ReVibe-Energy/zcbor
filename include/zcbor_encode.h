@@ -140,6 +140,17 @@ bool zcbor_undefined_put(zcbor_state_t *state, const void *unused);
 
 /** Encode a bstr header.
  *
+ * The rest of the string can be encoded freely.
+ *
+ * @param[inout] state   The current state of the encoding.
+ *
+ * @retval true   Header encoded correctly
+ * @retval false  Header encoded incorrectly, or backup failed.
+ */
+bool zcbor_bstr_header_encode(zcbor_state_t *state, uint64_t length);
+
+/** Encode a bstr header.
+ *
  * The rest of the string can be encoded as CBOR.
  * A state backup is created to keep track of the element count.
  * Call @ref zcbor_bstr_end_encode when done encoding the contents of the bstr.
