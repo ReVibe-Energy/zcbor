@@ -291,6 +291,14 @@ static bool primitive_put(zcbor_state_t *state, uint32_t input)
 	return true;
 }
 
+bool zcbor_bstr_header_encode(zcbor_state_t *state, uint64_t length)
+{
+	if (!uint64_encode(state, &length, ZCBOR_MAJOR_TYPE_BSTR)) {
+		ZCBOR_FAIL();
+	}
+
+	return true;
+}
 
 static size_t remaining_str_len(zcbor_state_t *state)
 {
